@@ -5,6 +5,7 @@ env:
   global:
     - PERL_MM_USE_DEFAULT=1
     - "PATH=$PATH:/hap1.1"
+    - COVERAGE=1
 
 before_install:
   - sudo apt-get install -qyy openjdk-7-jre-headless perl-doc wget curl build-essential git libssl-dev
@@ -19,3 +20,7 @@ before_install:
   - sudo cpan Devel::Cover::Report::Coveralls
 
 script: "./build.sh"
+
+after_success:
+    - cd gfe_submission
+    - cover -report coveralls

@@ -31,7 +31,7 @@ mv -i GFE_Submission gfe_submission
 cd gfe_submission
 sudo perl Makefile.PL
 HARNESS_PERL_SWITCHES=-MDevel::Cover make test
-cover -report coveralls
+#cover -report coveralls
 if [ "$?" != "0" ]; then
 	exit $?
 fi
