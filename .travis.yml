@@ -4,7 +4,7 @@ dist: trusty
 env:
   global:
     - PERL_MM_USE_DEFAULT=1
-    - "PATH=$PATH:/hap1.1"
+    - "PATH=$PATH:$TRAVIS_BUILD_DIR/hap1.1"
     - COVERAGE=1
 
 before_install:
