@@ -9,7 +9,7 @@ env:
 
 before_install:
   - sudo apt-get install -qyy openjdk-7-jre-headless perl-doc wget curl build-essential git libssl-dev
-  - sudo apt-get uninstall go cover
+  - sudo apt-get remove go cover
   - cp docker/hap1.1.tar.gz .
   - tar -xvzf hap1.1.tar.gz
   - chmod a+x hap1.1/hap1.1.jar
