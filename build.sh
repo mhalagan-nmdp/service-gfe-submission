@@ -34,7 +34,7 @@ if [ "$?" != "0" ]; then
 	exit $?
 fi
 
-make test && sudo make install
+sudo make install
 
 # Run service
 plackup -D -E deployment -s Starman -p 5000 -a bin/app.pl
