@@ -29,7 +29,9 @@ mv -i GFE_Submission gfe_submission
 
 # Install GFE_Submission and launch
 cd gfe_submission
-sudo perl Makefile.PL && cover -test -report coveralls
+sudo perl Makefile.PL
+HARNESS_PERL_SWITCHES=-MDevel::Cover make test
+cover -report coveralls
 if [ "$?" != "0" ]; then
 	exit $?
 fi
