@@ -29,11 +29,12 @@ mv -i GFE_Submission gfe_submission
 
 # Install GFE_Submission and launch
 cd gfe_submission
-sudo perl Makefile.PL && make test && sudo make install && cover -test -report coveralls
+sudo perl Makefile.PL && cover -test -report coveralls
 if [ "$?" != "0" ]; then
 	exit $?
 fi
 
+make test && sudo make install
 
 # Run service
 plackup -D -E deployment -s Starman -p 5000 -a bin/app.pl
