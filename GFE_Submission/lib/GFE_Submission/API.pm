@@ -320,6 +320,7 @@ post '/flowhml' => sub {
     }
 
     my $rh_gfe       = $o_gfe->getGfeHmlNextflow($s_input_file);
+    print STDERR "flowhml: ".Dumper($rh_gfe),"\n";
 
     content_type 'application/json';
     return defined $$rh_gfe{Error} ? swagger_template 404, $$rh_gfe{Error}
@@ -336,6 +337,8 @@ post '/flowhml' => sub {
             $h_subjects{$s_id}{$s_locus} = $gfe_gl;
         }
     }
+
+    print STDERR "h_subjects: ".Dumper(%h_subjects),"\n";
 
     my $parser = new XML::DOM::Parser;
     my $doc    = $parser->parsefile ($s_input_file);
