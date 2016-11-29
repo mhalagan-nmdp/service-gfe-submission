@@ -318,6 +318,7 @@ post '/flowhml' => sub {
             if(defined $n_retry && $n_retry =~ /\S/);
         $o_gfe->client($o_client);
     }
+    $o_gfe->verbose(1); 
 
     my $rh_gfe       = $o_gfe->getGfeHmlNextflow($s_input_file);
     print STDERR "flowhml: ".Dumper($rh_gfe),"\n";

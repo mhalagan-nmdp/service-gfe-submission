@@ -305,11 +305,17 @@ sub alignNextflow{
     }
   }else{
     if(defined $s_nextflow_log && -e $s_nextflow_log){
+      foreach my $s_log_flow (`cat $s_nextflow_log`){
+        chomp($s_log_flow);
+        $logger->error($s_log_flow);
+      }
       foreach my $s_log_dir (`cat $s_nextflow_log | grep '/' | cut -f1 -d ' ' | sed 's/\\[//g' | cut -f1 -d '/'`){
         chomp($s_log_dir);
         my $s_work_dir = "work/".$s_log_dir;
         system("rm -rf $s_work_dir") if(-d $s_work_dir);
       }
+    }else{
+      $logger->error($s_nextflow_log." Not defined!");
     }
   }
 

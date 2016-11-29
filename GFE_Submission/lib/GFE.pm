@@ -349,6 +349,8 @@ CONFIG
     }
 
     my $s_gfe     = join('w',$s_locus, join('-', @a_gfe));
+    print STDERR "GFE: ",$s_gfe,"\n";
+
     if($s_gfe eq $s_locus."w1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0"){
         $logger->error("Invalid GFE was generated");
         if($self->verbose){foreach(`cat $s_logfile`){ chomp;push(@a_log,$_);}}
@@ -823,6 +825,8 @@ CONFIG
         $h_subjects{$s_subject_id}{$s_locus}{$s_gfe}++;
     }
     close $fh_nextflow;
+
+    print STDERR "Subjects1: ",Dumper(%h_subjects),"\n";
 
     # Delete alignment and fasta files
     $o_annotate->cleanup();
