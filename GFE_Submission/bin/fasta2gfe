@@ -113,6 +113,7 @@ foreach my $s_typing (keys %h_seqs){
     $s_locus =~ s/\|//g;
     next if(!defined $s_locus || $s_locus !~ /\S/);
     my $o_gfe = GFE->new();
+    $o_gfe->verbose(1);
     my $rh_gfe = $o_gfe->getGfe($s_locus,$h_seqs{$s_typing});
     my $s_gfe  = defined $$rh_gfe{gfe} ? $$rh_gfe{gfe} : '';
     next if !defined $s_gfe || $s_gfe !~ /\S/;

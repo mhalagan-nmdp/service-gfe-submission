@@ -371,6 +371,7 @@ CONFIG
     if($self->verbose){
         foreach(`cat $s_logfile`){ chomp;push(@a_log,$_);}
         system("rm $s_logfile") if (-e $s_logfile && $self->delete_logs);
+        print STDERR "LOG: ",Dumper(@a_log),"\n";
         $self->return_structure
             ? return {gfe => $s_gfe, locus => $s_locus,  aligned => $f_aligned, structure => \@a_structure, version => $self->version,log => \@a_log }
             : return {gfe => $s_gfe, locus => $s_locus,  aligned => $f_aligned, version => $self->version, log => \@a_log };

@@ -30,7 +30,7 @@ before_install:
   - cd gfe_submission
 
 script:
-    - PERL5OPT=-MDevel::Cover=-coverage,statement,branch,condition,path,subroutine prove -lrsv t
+    - PERL5OPT=-MDevel::Cover=-coverage,statement,branch,condition,path,subroutine prove -lrsv t/022_flow_hml.t
     - cover
 
 after_success:
