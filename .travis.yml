@@ -25,7 +25,6 @@ before_install:
   - cd GFE_Submission
   - cpanm --quiet --notest --installdeps .
   - cpanm --quiet --notest Devel::Cover::Report::Coveralls
-  - cpanm --quiet --notest XML::DOM::Parser
   - cd ..
   - mv -i GFE_Submission gfe_submission
   - cd gfe_submission

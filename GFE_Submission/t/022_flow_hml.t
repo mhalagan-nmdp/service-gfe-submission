@@ -68,7 +68,11 @@ my $doc    = $parser->parse($r_hml_file2->{content});
 my $root   = $doc->getDocumentElement();
 
 ok(defined $r_hml_file2->{content},"API successfully accepted a HML file");
+print STDERR "Content: ",Dumper($r_hml_file2->{content}),"\n";
+
 ok(defined $doc,"API XML successfully accepted a HML file");
+
+print STDERR "XML Doc: ",Dumper($doc->toString),"\n";
 
 foreach my $ra_sample (sort @{$root->getElementsByTagName('sample')}){
     my $s_id = $ra_sample->getAttributes->{id}->getValue;
