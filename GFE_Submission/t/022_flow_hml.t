@@ -63,10 +63,6 @@ $h_expected_gfe{"444444444"}{"HLA-B"} = "HLA-Bw10-10-15-78-32-115-21-7-3-6-20-1-
 $h_expected_gfe{"444444444"}{"HLA-C"} = "HLA-Cw22-1-3-78-16-139-20-24-2-10-14-1-13-1-1-1-1+HLA-Cw22-1-9-40-2-72-12-2-2-3-2-1-1-1-2-1-1";
 
 my $r_hml_file  = dancer_response POST => '/api/v1/flowhml', {files => [{name => 'file', filename => $t_file}]};
-print STDERR "Content1: ",Dumper($r_hml_file->{content}),"\n";
-ok(defined $r_hml_file->{content},"API successfully accepted a HML file");
-ok(defined $r_hml_file->{content}->{subjects},"API successfully subject GFE results from HML");
-
 my $r_hml_file2 = dancer_response POST => '/api/v1/flowhml?type=xml', {files => [{name => 'file', filename => $t_file}]};
 my $parser = new XML::DOM::Parser;
 my $doc    = $parser->parse($r_hml_file2->{content});
@@ -90,7 +86,8 @@ foreach my $ra_sample (sort @{$root->getElementsByTagName('sample')}){
     }
 }
 
-
+ok(defined $r_hml_file->{content},"API successfully accepted a HML file");
+ok(defined $r_hml_file->{content}->{subjects},"API successfully subject GFE results from HML");
 ok(defined $r_hml_file->{content}->{subjects}[1],"size subjects > 0");
 ok(defined $r_hml_file->{content}->{subjects}[0]->{typingData}[0],"Subject typing data returned from HML input");
 ok(defined $r_hml_file->{content}->{subjects}[0]->{typingData}[0]->{typing}[0],"Typing data returned from HML input");
