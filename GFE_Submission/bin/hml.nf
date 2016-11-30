@@ -25,7 +25,6 @@ subjectIdFiles = fastqFiles.map{ hml, fileIn ->
 
 //Get GFE For each sequence
 process getGFE{
-  errorStrategy 'ignore'
 
   tag{ subject }
 
