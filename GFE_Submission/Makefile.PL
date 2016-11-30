@@ -71,6 +71,7 @@ WriteMakefile(
         'File::Spec' => 0,
         'XML::DOM' => 0
     },
+    EXE_FILES    => [ 'bin/fasta2gfe' ],
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'GFE_Submission-*' },
 );

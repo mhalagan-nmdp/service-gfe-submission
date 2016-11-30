@@ -349,8 +349,6 @@ CONFIG
     }
 
     my $s_gfe     = join('w',$s_locus, join('-', @a_gfe));
-    print STDERR "GFE: ",$s_gfe,"\n";
-
     if($s_gfe eq $s_locus."w1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0"){
         $logger->error("Invalid GFE was generated");
         if($self->verbose){foreach(`cat $s_logfile`){ chomp;push(@a_log,$_);}}
@@ -367,11 +365,10 @@ CONFIG
             }
         };  
     }else{ $logger->info("Generated GFE: $s_gfe") if $self->verbose; }
-   
+    
     if($self->verbose){
         foreach(`cat $s_logfile`){ chomp;push(@a_log,$_);}
         system("rm $s_logfile") if (-e $s_logfile && $self->delete_logs);
-        print STDERR "LOG: ",Dumper(@a_log),"\n";
         $self->return_structure
             ? return {gfe => $s_gfe, locus => $s_locus,  aligned => $f_aligned, structure => \@a_structure, version => $self->version,log => \@a_log }
             : return {gfe => $s_gfe, locus => $s_locus,  aligned => $f_aligned, version => $self->version, log => \@a_log };
@@ -822,6 +819,7 @@ CONFIG
     open(my $fh_nextflow,"<",$s_nextflow_file) or die "CANT OPEN FILE $! $0";
     while(<$fh_nextflow>){
         chomp;
+        print STDERR "Nextflow fh_nextflow: ".$_."\n";
         my($s_subject_id,$s_typing,$s_locus,$s_gfe,$n_seq,$s_seq) = split(/,/,$_);
         $h_subjects{$s_subject_id}{$s_locus}{$s_gfe}++;
     }

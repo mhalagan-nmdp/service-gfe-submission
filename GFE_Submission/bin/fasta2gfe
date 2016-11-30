@@ -65,7 +65,7 @@ BEGIN{
     $| = 1;
 
     $USAGE = 
-        qq{./gfe-submission [--fasta] [--uri] [--verbose] [--help]
+        qq{./fasta2gfe [--fasta] [--uri] [--verbose] [--help]
             -f/--fasta      Fasta file
             -u/--uri        URI of feature service
             -l/--locus      HLA-Locus
@@ -80,7 +80,7 @@ use Cwd;
 our($s_subject_id) = (undef);
 &GetOptions('subject|i=s' => \$s_subject_id );
 
-
+print STDERR "fasta2gfe -- nextflow\n";
 
 my %h_seqs;
 my $s_header;
@@ -116,6 +116,7 @@ foreach my $s_typing (keys %h_seqs){
     $o_gfe->verbose(1);
     my $rh_gfe = $o_gfe->getGfe($s_locus,$h_seqs{$s_typing});
     my $s_gfe  = defined $$rh_gfe{gfe} ? $$rh_gfe{gfe} : '';
+    print STDERR "fasta2gfe log: ",Dumper($$rh_gfe{log}),"\n";
     next if !defined $s_gfe || $s_gfe !~ /\S/;
     my $n_seq  = length($h_seqs{$s_typing});
     print $fh join(",",$s_subject_id,$s_typing,$s_locus,$s_gfe,$n_seq),"\n";
